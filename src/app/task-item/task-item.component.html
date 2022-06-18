@@ -1,0 +1,54 @@
+<h1>Hi I am Task Component</h1>
+
+<!-- String Interpolation -->
+<div>{{getTaskName()}}</div>
+<p>{{taskId}}</p>
+
+<!-- Property Bindng -->
+<button [disabled]="isButtonEnabled">Add Task</button>
+
+<!-- Event Binding -->
+<button (click)="onButtonClick()">Change Task Name</button>
+
+<!-- Two way Data Binding -->
+<input type="text" [(ngModel)]="taskName">
+
+
+<!-- Directives -->
+<!-- ngIf -->
+<div *ngIf="taskId%2 == 0; else notTrue">NgIf Directive</div>
+<ng-template #notTrue>
+    <div>Not True Div</div>
+</ng-template>
+
+<!-- ngStyle -->
+<div [ngStyle]="{'color': getColor()}" >Ng Style</div>
+
+<!-- ngClass -->
+<h1 [ngClass]="{active: taskId%2==0, inactive: taskId%2 !=0}"> Active Heading</h1>
+<h1 [ngClass]="{inactive: (taskId+1)%2 !=0}">Inactive Heading</h1>
+
+<!-- ngFor -->
+<div *ngFor="let item of taskItems; let id=index">
+    {{item}}<br>
+    {{id}}
+</div>
+
+
+
+<!-- Binding Custom Properties -->
+
+<p class="parent">Name: {{itemName}}</p>
+
+<!-- Binding Custom Events -->
+<button (click)="onCustomButtonClick()">Child Button Clicked</button>
+
+<input type="text" #inputVal>
+
+<button (click)="onClickMe(inputVal)">Click Me</button>
+
+<select [ngModel]="menuValue" (ngModelChange)="menuSelected()">
+    <option value="Started">Started</option>
+    <option value="InProgress">InProgress</option>
+    <option value="Not Started">Not Started</option>
+</select>
