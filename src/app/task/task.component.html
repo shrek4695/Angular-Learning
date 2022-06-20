@@ -1,0 +1,9 @@
+<div>
+      <h5>{{ task.name }}</h5>
+      <p>This task is {{ task.status }}</p>
+      <button class="btn btn-default" (click)="onSetTo('active')">Set to 'active'</button>
+      <button class="btn btn-default" (click)="onSetTo('inactive')">Set to 'inactive'</button>
+      <button class="btn btn-default" (click)="onSetTo('unknown')">Set to 'unknown'</button>
+  </div>
+  
+  

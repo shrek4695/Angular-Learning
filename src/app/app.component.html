@@ -1,18 +1,5 @@
-<!-- <div class="parent">
-    Item Name<input type="text" [(ngModel)]="title">
-    <div class="child">
-        <app-task-item  [name]="title" (customEvent)="onCustomEvent($event)"></app-task-item>
-    </div>
-    <br>
-    Category <span>{{category}}</span>
-</div> -->
+<a routerLink='' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a><br>
+<a routerLink='new' routerLinkActive="active">Add new Task</a><br>
+<a routerLink='details' routerLinkActive="active">Details</a><br>
 
-
-<app-demos>
-    <p #contentRef>Hello World</p>
-</app-demos>
-
-<button [appHighlight]="'red'" defaultColor="red" [hoverColor]="'yellow'">Click Me Button</button>
-
-<h1 *appStruct="isTrue">Everyone is Exhausted</h1>
-
+<router-outlet></router-outlet>

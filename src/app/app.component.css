@@ -9,3 +9,7 @@
     background-color: brown;
     height: 50px;
 }
+
+.active {
+    color: red;
+}

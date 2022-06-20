@@ -1,0 +1,23 @@
+<div >
+    <div >
+      <div>
+        <label>Task Name</label>
+        <input
+          type="text"
+          #taskName>
+      </div>
+      <div >
+        <select #status>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="hidden">Hidden</option>
+        </select>
+      </div>
+      <button
+        (click)="onTaskAccount(taskName.value, status.value)">
+        Add Task
+      </button>
+    </div>
+  </div>
+  
+  <a routerLink="/new">Reload</a>

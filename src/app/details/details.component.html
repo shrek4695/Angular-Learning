@@ -1,0 +1,14 @@
+<div >
+    <div >
+      <div >
+        <app-task
+          *ngFor="let task of tasks; let i = index"
+          [task]="task"
+          [id]="i"
+          >
+        </app-task>
+      </div>
+    </div>
+  </div>  
+
+  <button (click)="reloadComp()">Reload</button>
