@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'training-project';
-  category;
-  isTrue= true;
-
-  onCustomEvent(event) {
-    this.category= event.category;
-  }
 }
