@@ -8,22 +8,13 @@ import { HighlightDirective } from './Directives/highlight.directive';
 import { StructDirective } from './Directives/struct.directive';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { TaskComponent } from './task/task.component';
-import { RouterModule, Routes } from '@angular/router';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoutes: Routes = [
-  {
-    path: '', component: HomeComponent
-  },
-  {
-    path: 'new', component: NewTaskComponent,
-  },
-  {
-    path: 'details', component: DetailsComponent
-  }
 
-]
 
 @NgModule({
   declarations: [
@@ -34,12 +25,14 @@ const appRoutes: Routes = [
     NewTaskComponent,
     TaskComponent,
     DetailsComponent,
-    HomeComponent
+    HomeComponent,
+    TaskDetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

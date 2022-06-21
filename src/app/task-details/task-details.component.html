@@ -1,0 +1,7 @@
+<h1>Task Details</h1>
+<div>Task Name: {{this.user.name}}</div>
+<div>Task ID: {{this.user.id}}</div>
+
+<a [routerLink]="'/details/3/shopping'">Go to 3rd Task</a>
+<br>
+<a [routerLink]="'/new'" [queryParams]="{allowEdit: true}">Edit</a>

@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 //import { LoggingServices } from '../services/logging.service';
 
@@ -8,12 +9,16 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./task.component.css'],
   //providers: [LoggingServices, DataService]
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   @Input() task: {name: string, status: string};
   @Input() id: number;
   // @Output() statusChanged = new EventEmitter<{id: number, newStatus: string}>();
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    console.log(this.route.snapshot.queryParams);
+  }
 
 
   onSetTo(status: string) {
@@ -23,6 +28,10 @@ export class TaskComponent {
     //this.loggingService.logStatus(status);
 
     //console.log('A Task status changed, new status: ' + status);
+  }
+
+  onEdit() {
+    this.router.navigate(['/new',this.id,], {queryParams: {allowEdit: true},fragment: 'Editing'});
   }
 
 }
