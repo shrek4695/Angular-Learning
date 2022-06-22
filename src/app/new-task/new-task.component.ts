@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DataService } from '../services/data.service';
+import { CanComponentDeactivate } from './can-deactivate-gaurd.service';
 
 @Component({
   selector: 'app-new-task',
@@ -8,11 +10,20 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./new-task.component.css'],
   //providers: [LoggingServices, DataService]
 })
-export class NewTaskComponent implements OnInit {
+export class NewTaskComponent implements OnInit, CanComponentDeactivate {
   // @Output() taskAdded = new EventEmitter<{name: string, status: string}>();
   allowEdit: boolean;
+  isTaskAdded:boolean = false;
 
   constructor( private dataService: DataService, private router: Router, private route: ActivatedRoute) {}
+
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    if(!this.isTaskAdded) {
+      return confirm('Do you want to discard your changes ?');
+    } else {
+      return true;
+    }
+  };
 
   ngOnInit(): void {
     this.allowEdit =  this.route.snapshot.queryParams['allowEdit'];
@@ -36,6 +47,7 @@ export class NewTaskComponent implements OnInit {
     //console.log('A Task status changed, new status: ' + taskStatus);
 
     this.router.navigate(['details'], {queryParamsHandling: 'preserve'});
+    this.isTaskAdded = true;
   }
 
 

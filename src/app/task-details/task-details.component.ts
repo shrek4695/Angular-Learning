@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class TaskDetailsComponent implements OnInit, OnDestroy {
 
   user: {name: string, id: number};
+  taskDetails: {name: string, status: string}
   paramsSubscription: Subscription;
   constructor(private route: ActivatedRoute) { }
 
@@ -22,6 +23,11 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
       this.user.id = params['id'];
       this.user.name = params['name'];
     })
+
+    this.route.data.subscribe((data: Data) => {
+      this.taskDetails = data['task']
+    })
+
   }
 
   ngOnDestroy(): void {

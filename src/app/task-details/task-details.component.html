@@ -4,4 +4,10 @@
 
 <a [routerLink]="'/details/3/shopping'">Go to 3rd Task</a>
 <br>
-<a [routerLink]="'/new'" [queryParams]="{allowEdit: true}">Edit</a>
+<!-- <a [routerLink]="'/new'" [queryParams]="{allowEdit: true}">Edit</a> -->
+<a [routerLink]="'/details/'+user.id+'/edit'" [queryParams]="{allowEdit: true}" queryParamsHandling="merge">Edit</a>
+
+<hr>
+<hr>
+<div>Task Name: {{taskDetails.name}}</div>
+<div>Task Status: {{taskDetails.status}}</div>

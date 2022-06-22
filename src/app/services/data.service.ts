@@ -31,4 +31,10 @@ export class DataService {
         this.tasks[updateInfo.id].status = updateInfo.newStatus;
         this.loggingService.logStatus(updateInfo.newStatus);
       }
+
+      getTask(id: number) {
+        console.log("id", id);
+        console.log("data", this.tasks[id]);
+        return this.tasks[id];
+      }
 }

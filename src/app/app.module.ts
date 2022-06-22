@@ -15,6 +15,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
+import { DataService } from './services/data.service';
+import { LoggingServices } from './services/logging.service';
+import { AuthService } from './services/auth.service';
+import { AuthGaurd } from './services/auth-gaurd.service';
+import { CanDeactivateGaurd } from './new-task/can-deactivate-gaurd.service';
+import { ErrorComponent } from './error/error.component';
+import { TaskResolver } from './task-details/task-resolver.service';
+import { ActivatedRouteSnapshot } from '@angular/router';
+
+
 
 @NgModule({
   declarations: [
@@ -27,14 +37,15 @@ import { AppRoutingModule } from './app-routing.module';
     DetailsComponent,
     HomeComponent,
     TaskDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataService, LoggingServices, AuthService, AuthGaurd, CanDeactivateGaurd, TaskResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
