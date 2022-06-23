@@ -41,7 +41,8 @@ export class NewTaskComponent implements OnInit, CanComponentDeactivate {
     // });
 
     this.dataService.addTask({name: taskName, status: taskStatus});
-    this.dataService.statusUpdated.emit("Emitted");
+    //this.dataService.statusUpdated.emit("Emitted");
+    
     // this.loggingService = new LoggingServices();
     //this.loggingService.logStatus(taskStatus);
     //console.log('A Task status changed, new status: ' + taskStatus);

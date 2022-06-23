@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { LoggingServices } from "./logging.service";
 
 @Injectable({providedIn: 'root'})
@@ -20,7 +21,8 @@ export class DataService {
         }
       ];
 
-      statusUpdated = new EventEmitter<string>();
+      // statusUpdated = new EventEmitter<string>();
+      statusUpdated = new Subject<boolean>();
 
       addTask(taskDetails:{name: string, status: string}) {
         this.tasks.push(taskDetails);

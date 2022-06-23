@@ -18,6 +18,7 @@ export class TaskComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.snapshot.queryParams);
+
   }
 
 
@@ -28,6 +29,7 @@ export class TaskComponent implements OnInit {
     //this.loggingService.logStatus(status);
 
     //console.log('A Task status changed, new status: ' + status);
+    this.dataService.statusUpdated.next(true);
   }
 
   onEdit() {

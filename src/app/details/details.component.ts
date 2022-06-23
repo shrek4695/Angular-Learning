@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 })
 export class DetailsComponent implements OnInit {
   tasks: {name: string, status: string}[] = [];
+  statusUpdated:boolean = false;
 
   constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) {
     this.dataService.statusUpdated.subscribe((status) => {
@@ -18,6 +19,10 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     this.tasks = this.dataService.tasks;
+
+    this.dataService.statusUpdated.subscribe(didUpdate=> {
+      this.statusUpdated = didUpdate;
+    })
   }
 
   // onTaskAdded(newTask: {name: string, status: string}) {
