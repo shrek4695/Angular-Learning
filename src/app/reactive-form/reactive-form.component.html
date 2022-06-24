@@ -1,0 +1,33 @@
+<div >
+    <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
+      <div id="user-data" formGroupName="userData">
+        <div >
+          <label for="username">Username</label>
+          <input type="text" id="username" formControlName="username">
+          <button (click)="onSetUsername()">Set Username</button>
+          <span *ngIf="signupform.get('userData.username').errors?.required && signupform.get('userData.username').touched">Enter username</span>
+          <span *ngIf="signupform.get('userData.username').errors?.nameIsForbidden">Enter a valid Username</span>
+        </div>
+        <div >
+          <label for="email">Mail</label>
+          <input type="email" id="email" formControlName="email">
+        </div>
+      </div>
+      <label>Gender</label>
+      <div *ngFor="let gender of genders">
+        <label>
+          <input
+            type="radio"
+            [value]="gender" formControlName="gender">{{ gender }} 
+        </label>
+      </div>
+      <div formArrayName="hobbies">
+        <label>Hobbies</label>
+        <button (click)="onAddHobby()">Add your Hobby</button>
+        <div *ngFor="let hobbyControl of Controls; let i =index">
+            <input type="text" [formControlName]="i">
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+</div>

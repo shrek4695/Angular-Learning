@@ -1,23 +1,42 @@
-<div>
-    <form>
+<!-- <div>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div id="user-data">
             <div>
                 <label for="username">Username</label>
-                <input type="text" id="username">
+                <input type="text" id="username" ngModel name="username" required #username="ngModel">
             </div>
-            <button type="button">Suggest an Username</button>
+            <span *ngIf="!username.valid && username.touched">Enter a value</span><br>
+            <button type="button" (click)="onUsernameSuggested()">Suggest an Username</button>
             <div>
                 <label for="email">Mail</label>
-                <input type="email" id="email">
+                <input type="email" id="email" ngModel name="email"  required email>
             </div>
         </div>
-        <div>
+        <div ngModelGroup="QuesAns" #QuesAns="ngModelGroup">
             <label for="secret">Secret Questions</label>
-            <select id="secret">
+            <select id="secret" name="secret" [ngModel]="defaultQuestion">
                 <option value="pet">Your first Pet?</option>
                 <option value="teacher">Your first teacher?</option>
             </select>
+
+            <label for="answer">Answer</label>
+            <textarea name="answer" [(ngModel)]="QuesAnswer"></textarea>
+            <div>Answer is: {{QuesAnswer}}</div>
         </div>
-        <button type="submit">Submit</button>
+        <div *ngFor="let gender of genders">
+            <label>
+                <input type="radio" name="gender" ngModel [value]="gender">{{gender}}
+            </label>
+        </div>
+        <button [disabled]="!f.valid" type="submit">Submit</button>
     </form>
-</div>
+
+    <hr>
+    <div>
+        <span>Form Data</span><br>
+        Username: {{formData.username}}<br>
+        email: {{formData.email}}<br>
+    </div>
+    
+</div> -->
+<app-reactive-form></app-reactive-form>
