@@ -1,22 +1,21 @@
-<div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
+<div>
+    <div>
+      <div>
         <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
-          <div class="form-group">
+          <div >
             <label for="title">Title</label>
             <input
               type="text"
-              class="form-control"
               id="title"
               required
               ngModel
               name="title"
             />
           </div>
-          <div class="form-group">
+          <div >
             <label for="content">Content</label>
             <textarea
-              class="form-control"
+              
               id="content"
               required
               ngModel
@@ -24,7 +23,7 @@
             ></textarea>
           </div>
           <button
-            class="btn btn-primary"
+            
             type="submit"
             [disabled]="!postForm.valid"
           >
@@ -34,14 +33,13 @@
       </div>
     </div>
     <hr />
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div >
+      <div >
         <button class="btn btn-primary" (click)="onFetchPosts()">
           Fetch Posts
         </button>
         |
         <button
-          class="btn btn-danger"
           [disabled]="loadedPosts.length < 1"
           (click)="onClearPosts()"
         >
@@ -49,10 +47,28 @@
         </button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div >
+      <div *ngIf="loadedPosts.length < 1 && !isFetching">
         <p>No posts available!</p>
+      </div>
+      <div *ngIf="isFetching"> Loading Posts...</div>
+      <div *ngIf="!isFetching">
+        <ul *ngIf="loadedPosts.length >=1">
+            <li *ngFor="let post of loadedPosts">
+                <h3>{{post.title}}</h3>
+                <p>{{post.content}}</p>
+            </li>
+        </ul>
       </div>
     </div>
   </div>
+
+  <!-- Http Anatomy 
+
+  Http Verb - What is the kind of request 
+  url - From where to fetch, post, etc or location of data
+  header - meta data 
+  body - json format  -->
   
+
+   <!-- <app-servers></app-servers> -->

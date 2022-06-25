@@ -1,3 +1,11 @@
 <div>
-    <p> {{server.name }} | {{server.instanceType }} | {{server.started }} | {{server.status}}</p>
+    <input type="text" [(ngModel)]="filteredString">
+    <button type="button" (click)="onAddServer()">Add Server</button>
+    
+    <div>
+        <p *ngFor="let server of servers | filter:filteredString:'status'"> {{server.name | shorten: 7 }} | {{server.instanceType | uppercase }} | {{server.started | date:'fullDate' | uppercase }} | {{server.status}}</p>
+    </div>
+    
 </div>
+<hr>
+{{statusHighlight | async}}
