@@ -41,6 +41,8 @@ export class ReactiveFormComponent implements OnInit {
     //   'hobbies': []
     // })
 
+    console.log("patch value");
+
     this.signupform.patchValue({
       'userData': {
         'username': "Shreea"
@@ -49,7 +51,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupform);
+    console.log("submit called",this.signupform);
     this.signupform.reset();
   }
 

@@ -4,7 +4,7 @@
         <div >
           <label for="username">Username</label>
           <input type="text" id="username" formControlName="username">
-          <button (click)="onSetUsername()">Set Username</button>
+          <button type="button" (click)="onSetUsername()">Set Username</button>
           <span *ngIf="signupform.get('userData.username').errors?.required && signupform.get('userData.username').touched">Enter username</span>
           <span *ngIf="signupform.get('userData.username').errors?.nameIsForbidden">Enter a valid Username</span>
         </div>
