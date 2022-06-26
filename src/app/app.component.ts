@@ -2,56 +2,64 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import {Post } from './post.model';
+import { PostService } from './posts.service';
 //import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [PostService]
 })
 export class AppComponent implements OnInit {
   loadedPosts = [];
   isFetching = false;
+  error: string = null;
 
-  constructor( private http: HttpClient) {}
+  constructor( private http: HttpClient, private postService: PostService) {}
 
   ngOnInit() {
-    this.fetchPosts();
+    // this.fetchPosts();
+    //this.postService.getPostData();
+    this.getData();
+    this.postService.error.subscribe(message =>{
+      this.error = message;
+    });
   }
 
   onCreatePost(postData: Post) {
     // Send Http request
+    this.postService.postData(postData);
     console.log(postData);
-    this.http.post<{name:string}>('https://employee-management-syst-9e601-default-rtdb.firebaseio.com/post.json', postData).subscribe((responseData)=>{
-      console.log("Response Data", responseData);
-    });
   }
 
   onFetchPosts() {
+    this.getData();
     // Send Http request
-    this.fetchPosts();
+    // this.fetchPosts();
   }
 
-  private fetchPosts() {
+  getData() {
     this.isFetching = true;
-    this.http.get<{[key:string]: Post}>('https://employee-management-syst-9e601-default-rtdb.firebaseio.com/post.json')
-    .pipe(map((responseData: {[key:string]: Post}) => {
-      const postArray: Post[] = [];
-      for(const key in responseData) {
-        if(responseData[key]) {
-          postArray.push({...responseData[key], id: key})
-        }
-      }
-      return postArray;
-    }))
-    .subscribe(posts => {
-      this.isFetching = false;
+    this.postService.getPostData().subscribe(posts => {
+        this.isFetching = false;
       console.log("Posts", posts);
-      this.loadedPosts = posts;
+        this.loadedPosts = posts;
+    }, error => {
+      // this.error = error.message;
+      this.postService.error.next(error.message);
     });
   }
 
+  // private fetchPosts() {
+  //   this.isFetching = true;
+    
+  // }
+
   onClearPosts() {
     // Send Http request
+    this.postService.deletePosts().subscribe(() => {
+      this.loadedPosts = [];
+    })
   }
 }

@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { ServersComponent } from './servers/servers.component';
 import { ShortenPipe } from './servers/shorten.pipe';
 import { FilterPipe } from './servers/filter.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { PostService } from './posts.service';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS, 
+    useClass: AuthInterceptorService, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

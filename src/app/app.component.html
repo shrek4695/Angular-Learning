@@ -51,7 +51,11 @@
       <div *ngIf="loadedPosts.length < 1 && !isFetching">
         <p>No posts available!</p>
       </div>
-      <div *ngIf="isFetching"> Loading Posts...</div>
+      <div *ngIf="isFetching && !error"> Loading Posts...</div>
+      <div *ngIf="error">
+        <p>An error Occured</p>
+        <p>{{error}}</p>
+      </div>
       <div *ngIf="!isFetching">
         <ul *ngIf="loadedPosts.length >=1">
             <li *ngFor="let post of loadedPosts">
